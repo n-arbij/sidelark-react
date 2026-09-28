@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 function Dashboard() {
+    const navigate = useNavigate();
     const services = [
         { id: 1, label: 'Tasks', color: '#6ECFCF', area: 'tasks' },
         { id: 2, label: 'Goals', color: '#f66b56', area: 'goals' },
@@ -11,7 +13,7 @@ function Dashboard() {
     ];
 
     const handleClick = (service) => {
-        console.log(`Clicked: ${service.label}`);
+        navigate(`/${service.area}`);
     };
 
     return (
