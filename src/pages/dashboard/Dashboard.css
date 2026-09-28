@@ -1,0 +1,86 @@
+
+.dashboard {
+    height: 100lvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+.dashboard-header {
+    text-align: center;
+    font-size: medium;
+}
+
+.dashboard-subtitle {
+    font-size: 14px;
+    color: #888;
+    margin: 0 0 8px;
+    letter-spacing: 0.02em;
+}
+
+.dashboard-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.services-grid {
+    display: grid;
+    width: 100%;
+    max-width: 680px;
+    grid-template-columns: 1fr 1fr 1.6fr 1.2fr;
+    grid-template-rows: 130px 130px;
+    grid-template-areas:
+        "tasks    goals    journals  habits"
+        "calendar calendar journals  finance";
+    gap: 8px;
+}
+
+.service-tile {
+    border: 2px solid #000;
+    border-radius: 16px;
+    cursor: pointer;
+    padding: 20px;
+    display: flex;
+    align-items: flex-end;
+    text-align: left;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.service-tile:active {
+    transform: translateY(0);
+}
+
+.service-tile--tasks    { grid-area: tasks; }
+.service-tile--goals    { grid-area: goals; }
+.service-tile--journals { grid-area: journals; }
+.service-tile--habits   { grid-area: habits; }
+.service-tile--calendar { grid-area: calendar;}
+.service-tile--finance  { grid-area: finance; }
+
+.service-tile__label {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #1a1a1a;
+    pointer-events: none;
+}
+
+.service-tile--tasks    .service-tile__label,
+.service-tile--goals    .service-tile__label,
+.service-tile--journals .service-tile__label,
+.service-tile--habits   .service-tile__label,
+.service-tile--finance  .service-tile__label {
+    color: #1a1a1a;
+}
