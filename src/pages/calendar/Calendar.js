@@ -26,7 +26,6 @@ const timeFmt = new Intl.DateTimeFormat([], { hour: '2-digit', minute: '2-digit'
 const localKey = (d) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
 const utcKey = (d) => `${d.getUTCFullYear()}-${d.getUTCMonth() + 1}-${d.getUTCDate()}`;
 
-// Returns every calendar-day key an event touches, so multi-day events show on each day.
 function daysCovered(ev) {
     const start = new Date(ev.startTime);
     const end = new Date(ev.endTime);
@@ -41,7 +40,6 @@ function daysCovered(ev) {
         return keys.length ? keys : [utcKey(start)];
     }
 
-    // Timed events use the viewer's local days. The end is exclusive, so 00:00 does not spill over.
     const last = new Date(Math.max(end - 1, start));
     const cur = new Date(start.getFullYear(), start.getMonth(), start.getDate());
     while (cur <= last) {
@@ -226,7 +224,7 @@ function Calendar() {
                             )}
                         </div>
 
-                        <button className="cal-detail__add-btn">+ Add Event</button>
+                        <button className="btn">+ Add Event</button>
                     </>
                 ) : (
                     <div className="cal-detail__placeholder">
