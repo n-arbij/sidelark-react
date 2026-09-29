@@ -1,6 +1,6 @@
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar/Navbar';
 import Calendar from './pages/calendar/Calendar';
 import Dashboard from './pages/dashboard/Dashboard';
 
