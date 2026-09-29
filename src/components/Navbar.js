@@ -9,17 +9,28 @@ import {
     Wallet,
     Menu,
     X,
+    LayoutDashboard,
 } from 'lucide-react';
 import './Navbar.css';
 
 const NAV_ITEMS = [
-    { id: 1, path: '/calendar', label: 'Calendar', Icon: CalendarDays },
-    { id: 2, path: '/tasks',    label: 'Tasks',    Icon: CheckSquare  },
-    { id: 3, path: '/goals',    label: 'Goals',    Icon: Target       },
-    { id: 4, path: '/journals', label: 'Journals', Icon: BookOpen     },
-    { id: 5, path: '/habits',   label: 'Habits',   Icon: Flame        },
-    { id: 6, path: '/finance',  label: 'Finance',  Icon: Wallet       },
+    { id: 1, ring: 1, path: '/',         label: 'Dashboard', Icon: LayoutDashboard },
+    { id: 2, ring: 1, path: '/calendar', label: 'Calendar',  Icon: CalendarDays },
+    { id: 3, ring: 1, path: '/tasks',    label: 'Tasks',     Icon: CheckSquare },
+    { id: 4, ring: 2, path: '/goals',    label: 'Goals',     Icon: Target },
+    { id: 5, ring: 2, path: '/journals', label: 'Journals',  Icon: BookOpen },
+    { id: 6, ring: 2, path: '/habits',   label: 'Habits',    Icon: Flame },
+    { id: 7, ring: 2, path: '/finance',  label: 'Finance',   Icon: Wallet },
 ];
+
+const RING_RADII = { 1: 90, 2: 150 };
+
+const RINGS = [1, 2].map((ring) => ({
+    radius: RING_RADII[ring],
+    items: NAV_ITEMS.filter((item) => item.ring === ring),
+}));
+
+const angleFor = (i, n) => (n === 1 ? 45 : 5 + (i * 80) / (n - 1));
 
 function Navbar() {
     const [open, setOpen] = useState(false);
@@ -52,25 +63,28 @@ function Navbar() {
                 )}
             </button>
 
-            {NAV_ITEMS.map((item, index) => {
-                const { Icon } = item;
-                const isActive = location.pathname === item.path;
-
-                return (
-                    <button
-                        key={item.id}
-                        className={`nav-sub-btn nav-sub-btn--${index + 1} ${open ? 'nav-sub-btn--visible' : ''} ${isActive ? 'nav-sub-btn--active' : ''}`}
-                        onClick={() => handleNav(item.path)}
-                        title={item.label}
-                        aria-label={item.label}
-                    >
-                        <Icon
-                            size={18}
-                            strokeWidth={2}
-                            color={isActive ? '#fff' : '#1a1a1a'}
-                        />
-                    </button>
-                );
+            {RINGS.map((ring, r) => {
+                const offset = RINGS.slice(0, r).reduce((sum, x) => sum + x.items.length, 0);
+                return ring.items.map((item, i) => {
+                    const { Icon } = item;
+                    const isActive = location.pathname === item.path;
+                    return (
+                        <button
+                            key={item.id}
+                            className={`nav-sub-btn ${open ? 'nav-sub-btn--visible' : ''} ${isActive ? 'nav-sub-btn--active' : ''}`}
+                            style={{
+                                '--angle': `${angleFor(i, ring.items.length)}deg`,
+                                '--radius': `${ring.radius}px`,
+                                '--i': offset + i,
+                            }}
+                            onClick={() => handleNav(item.path)}
+                            title={item.label}
+                            aria-label={item.label}
+                        >
+                            <Icon size={18} strokeWidth={2} />
+                        </button>
+                    );
+                });
             })}
         </div>
     );

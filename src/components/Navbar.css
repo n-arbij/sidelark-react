@@ -63,29 +63,18 @@
     background: #1a1a1a;
 }
 
-.nav-wrapper--open .nav-sub-btn--1 {
-    transform: translate(112px, 18px) scale(1);
-    transition-delay: 0.04s;
+.nav-sub-btn--active:hover{
+    background-color: #1a1a1a;
 }
-.nav-wrapper--open .nav-sub-btn--2 {
-    transform: translate(100px, 46px) scale(1);
-    transition-delay: 0.08s;
-}
-.nav-wrapper--open .nav-sub-btn--3 {
-    transform: translate(80px, 74px) scale(1);
-    transition-delay: 0.12s;
-}
-.nav-wrapper--open .nav-sub-btn--4 {
-    transform: translate(56px, 101px) scale(1);
-    transition-delay: 0.16s;
-}
-.nav-wrapper--open .nav-sub-btn--5 {
-    transform: translate(29px, 120px) scale(1);
-    transition-delay: 0.20s;
-}
-.nav-wrapper--open .nav-sub-btn--6 {
-    transform: translate(10px, 132px) scale(1);
-    transition-delay: 0.24s;
+
+.nav-wrapper--open .nav-sub-btn {
+    transform:
+        translate(
+            calc(cos(var(--angle)) * var(--radius)),
+            calc(sin(var(--angle)) * var(--radius))
+        )
+        scale(1);
+    transition-delay: calc(var(--i) * 0.04s);
 }
 
 .nav-sub-btn--active svg {
