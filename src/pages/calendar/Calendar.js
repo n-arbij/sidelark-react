@@ -139,7 +139,7 @@ function Calendar() {
                 <div className="cal-main">
                     <div className="cal-header">
                         <div className="cal-header__title">
-                            <h1>CALENDAR</h1>
+                            <h1>Calendar</h1>
                         </div>
                         <div className="cal-header__nav">
                             <button className="cal-nav-btn" onClick={prevMonth}>&#8249;</button>
