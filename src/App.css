@@ -6,3 +6,34 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+ 
+.btn {
+  background-color: white;
+  color: black;
+  border-radius: 10em;
+  font-size: 14px;
+  font-weight: 600;
+  padding: .8em 1.5em;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 2px solid black;
+  box-shadow: 0 0 0 0 black;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 black;
+};
+
+.btn:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 black;
+};

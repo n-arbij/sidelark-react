@@ -1,5 +1,7 @@
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
+import Navbar from './components/navbar/Navbar';
+import Calendar from './pages/calendar/Calendar';
 import Dashboard from './pages/dashboard/Dashboard';
 
 function Page({ title }) {
@@ -11,18 +13,31 @@ function Page({ title }) {
   );
 }
 
+function Layout({ children }) {
+  const location = useLocation();
+  const showNav = location.pathname !== '/';
+  return (
+    <>
+      {showNav && <Navbar />}
+      {children}
+    </>
+  );
+}
+
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/tasks" element={<Page title="Tasks" />} />
-        <Route path="/goals" element={<Page title="Goals" />} />
-        <Route path="/calendar" element={<Page title="Calendar" />} />
-        <Route path="/journals" element={<Page title="Journals" />} />
-        <Route path="/habits" element={<Page title="Habits" />} />
-        <Route path="/finance" element={<Page title="Finance" />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/"          element={<Dashboard />} />
+          <Route path="/tasks"     element={<Page title="Tasks" />} />
+          <Route path="/goals"     element={<Page title="Goals" />} />
+          <Route path="/calendar"  element={<Calendar />} />
+          <Route path="/journals"  element={<Page title="Journals" />} />
+          <Route path="/habits"    element={<Page title="Habits" />} />
+          <Route path="/finance"   element={<Page title="Finance" />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 }
