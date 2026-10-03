@@ -3,6 +3,8 @@ import './App.css';
 import Navbar from './components/navbar/Navbar';
 import Calendar from './pages/calendar/Calendar';
 import Dashboard from './pages/dashboard/Dashboard';
+import JournalForm from './pages/journal/JournalForm';
+import JournalList from './pages/journal/JournalList';
 
 function Page({ title }) {
   return (
@@ -33,7 +35,9 @@ function App() {
           <Route path="/tasks"     element={<Page title="Tasks" />} />
           <Route path="/goals"     element={<Page title="Goals" />} />
           <Route path="/calendar"  element={<Calendar />} />
-          <Route path="/journals"  element={<Page title="Journals" />} />
+          <Route path="/journals" element={<JournalList />} />
+          <Route path="/journals/new" element={<JournalForm />} />
+          <Route path="/journals/:id/edit" element={<JournalForm />} />
           <Route path="/habits"    element={<Page title="Habits" />} />
           <Route path="/finance"   element={<Page title="Finance" />} />
         </Routes>
